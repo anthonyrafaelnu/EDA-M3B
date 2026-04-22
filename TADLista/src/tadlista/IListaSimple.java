@@ -1,6 +1,6 @@
 package tadlista;
 
-public interface IListaSimple {
+public interface IListaSimple<T> {
     
     /*
     PRE: -
@@ -8,9 +8,9 @@ public interface IListaSimple {
     */
     public boolean esVacia();
     
-    public void agregarInicio(int n);
+    public void agregarInicio(T n);
     
-    public void agregarFinal(int n);
+    public void agregarFinal(T n);
     
     public void borrarInicio();
     
@@ -20,19 +20,19 @@ public interface IListaSimple {
     
     public void mostrar();
     
-    public void agregarOrd(int n);
+    public void agregarOrd(T n);
     
-    public void borrarElemento(int n);
+    public void borrarElemento(T n);
     
     public int cantElementos();
     
-    public boolean pertenece(int n);
+    public boolean pertenece(T n);
     
     /*
     PRE: Indice es un valor entre 0 y cantidad de elementos - 1
     POS: Devuelve el elemento en el índice.
     */
-    public int obtenerElemento(int indice);
+    public T obtenerElemento(int indice);
     
-    public void mostrarREC(Nodo l);
+    public void mostrarREC();
 }

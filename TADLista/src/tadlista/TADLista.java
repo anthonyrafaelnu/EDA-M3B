@@ -1,5 +1,7 @@
 package tadlista;
 
+import dominio.Persona;
+
 public class TADLista {
 
     public static void main(String[] args) {
@@ -13,9 +15,16 @@ public class TADLista {
         l.agregarFinal(7);
         l.borrarFin();
         
-        l.mostrar();
-        System.out.println("Cantidad de elementos: " + l.cantElementos());
-        System.out.println("Elemento en la posición 2: " + l.obtenerElemento(3));
+        //l.mostrar();
+        //System.out.println("Cantidad de elementos: " + l.cantElementos());
+        //System.out.println("Elemento en la posición 3: " + l.obtenerElemento(3));
+        
+        Persona p = new Persona("Rafa", 24);
+        
+        ListaSimple listaPersona = new ListaSimple();
+        listaPersona.agregarInicio(p);
+        
+        listaPersona.mostrar();
     }
     
 }

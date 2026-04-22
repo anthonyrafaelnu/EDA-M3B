@@ -1,6 +1,6 @@
 package tadlista;
 
-public class ListaSimple implements IListaSimple {
+public class ListaSimple<T> implements IListaSimple<T> {
     private Nodo lista;
     private Nodo fin;
     private int cantidad;
@@ -17,8 +17,8 @@ public class ListaSimple implements IListaSimple {
     }
 
     @Override
-    public void agregarInicio(int n) {
-        Nodo nuevo = new Nodo(n);
+    public void agregarInicio(T n) {
+        Nodo<T> nuevo = new Nodo(n);
         nuevo.setSiguiente(this.lista);
         lista = nuevo;
         
@@ -30,11 +30,11 @@ public class ListaSimple implements IListaSimple {
     }
 
     @Override
-    public void agregarFinal(int n) {
+    public void agregarFinal(T n) {
         if(this.esVacia()){
             agregarInicio(n);
         }else{
-            Nodo nuevo = new Nodo(n);
+            Nodo<T> nuevo = new Nodo(n);
             nuevo.setSiguiente(null);
             
             this.fin.setSiguiente(nuevo);
@@ -46,14 +46,19 @@ public class ListaSimple implements IListaSimple {
 
     @Override
     public void borrarInicio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(!this.esVacia()){
+            Nodo<T> aBorrar = this.lista;
+            this.lista = this.lista.getSiguiente();
+            aBorrar.setSiguiente(null);
+            this.cantidad--;
+        }
     }
 
     @Override
     public void borrarFin() {
         if(!this.esVacia()){
             
-            Nodo aux = this.lista;
+            Nodo<T> aux = this.lista;
             
             if(aux.getSiguiente() == null){ // Tiene solo un nodo
                 this.vaciar();
@@ -64,7 +69,7 @@ public class ListaSimple implements IListaSimple {
                 
                 this.fin = aux;
                 aux.setSiguiente(null);
-                cantidad--;
+                this.cantidad--;
             }
             
         }
@@ -79,7 +84,7 @@ public class ListaSimple implements IListaSimple {
 
     @Override
     public void mostrar() {
-        Nodo aux = this.lista;
+        Nodo<T> aux = this.lista;
         
         while(aux != null){
             System.out.print(aux.getDato() + " ");
@@ -90,12 +95,12 @@ public class ListaSimple implements IListaSimple {
     }
 
     @Override
-    public void agregarOrd(int n) {
+    public void agregarOrd(T n) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void borrarElemento(int n) {
+    public void borrarElemento(T n) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -105,13 +110,20 @@ public class ListaSimple implements IListaSimple {
     }
 
     @Override
-    public boolean pertenece(int n) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean pertenece(T n) {
+        if(this.esVacia()) return false;
+        
+        Nodo aux = this.lista;
+        while(aux != null && !aux.getDato().equals(n)){
+            aux = aux.getSiguiente();
+        }
+        
+        return aux != null;
     }
     
     @Override
-    public int obtenerElemento(int indice) {
-        Nodo aux = this.lista;
+    public T obtenerElemento(int indice) {
+        Nodo<T> aux = this.lista;
         int pos = 0;
         
         while(pos != indice){
@@ -123,7 +135,7 @@ public class ListaSimple implements IListaSimple {
     }
 
     @Override
-    public void mostrarREC(Nodo l) {
+    public void mostrarREC() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -1,4 +1,4 @@
-package tadlista;
+package tadpila;
 
 public class Nodo<T> {
     private T dato;
