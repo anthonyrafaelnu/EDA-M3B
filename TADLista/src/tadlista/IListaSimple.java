@@ -35,4 +35,11 @@ public interface IListaSimple<T> {
     public T obtenerElemento(int indice);
     
     public void mostrarREC();
+    
+    
+    // Funciones del práctico
+    
+    public T maximo();
+    
+    int contar (T elem);
 }
