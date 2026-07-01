@@ -229,4 +229,19 @@ public class ListaSimple<T extends Comparable> implements IListaSimple<T> {
         return ret;
     }
     
+    public Cola listaAColaRec(int dato){
+        Cola ret = new Cola();
+        listaAColaRecAux(this.lista, ret, dato);
+        return ret;
+    }
+    
+    private void listaAColaRecAux(Nodo<T> aux, Cola c, int dato){
+        if(aux != null){
+            listaAColaRecAux(aux.getSiguiente(), c, dato);
+            
+            if(aux.getDato().compareTo(dato) > 0){
+                c.encolar(aux.getDato());
+            }
+        }
+    }
 }
